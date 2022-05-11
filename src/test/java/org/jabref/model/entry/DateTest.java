@@ -5,6 +5,7 @@ import java.time.Year;
 import java.time.YearMonth;
 import java.util.Optional;
 import java.util.stream.Stream;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,6 +50,67 @@ class DateTest {
     @Test
     void parseDateNull() {
         assertThrows(NullPointerException.class, () -> Date.parse(null));
+    }
+
+    // Caso de Teste 1: Valores das datas diferentes
+    @Test
+    void equalsDifferentDates() throws Exception {
+        assertEquals(false, new Date(2022, 01, 15).equals(new Date(2020, 1, 19)));
+    }
+
+    // Caso de Teste 2: Valores das datas iguais
+    @Test
+    void equalsSameDates() throws Exception {
+        assertEquals(true, new Date(2022, 04, 25).equals(new Date(2022, 04, 25)));
+    }
+
+    // Caso de Teste 3: Data comparada com null
+    @Test
+    void equalsNullDate() throws Exception {
+        assertEquals(false, new Date(2022, 01, 19).equals(null));
+    }
+
+    // Caso de Teste 4: Valores das datas diferentes, 
+    // com data a ser comparada sendo anterior.
+    @Test
+    void equalsPastDate() throws Exception {
+        assertEquals(false, new Date(2022, 03, 17).equals(new Date(2020, 02, 02)));
+    }
+
+    // Caso de Teste 5: Valores das datas diferentes,
+    // com a data a ser comparada sendo atual.
+    @Test
+    void equalsCurrentDate() throws Exception {
+        assertEquals(false, new Date(2021, 03, 17).equals(LocalDateTime.now()));
+    }
+
+    // Caso de Teste 6: Valores das datas diferentes,
+    // com o dia do mês diferente
+    @Test
+    void equalsDifferentDayDates() throws Exception {
+        assertEquals(false, new Date(2022, 03, 19).equals(new Date(2022, 03, 13)));
+    }
+
+    // Caso de Teste 7: Valores das datas diferentes,
+    // com o mês diferente
+    @Test
+    void equalsDifferentMonthDates() throws Exception {
+        assertEquals(false, new Date(2022, 01, 17).equals(new Date(2022, 02, 17)));
+    }
+
+    // Caso de Teste 8: Valores das datas diferentes,
+    // com o ano diferente
+    @Test
+    void equalsDifferentYearDates() throws Exception {
+        assertEquals(false, new Date(2021, 03, 17).equals(new Date(2020, 03, 17)));
+    }
+
+    // Caso de Teste 9: Valores das datas iguais,
+    // comparado com um Objeto ao invés de um Date
+    @Test
+    void equalsObject() throws Exception {
+        Object comparedTo = new Date(2022, 03, 17);
+        assertEquals(true, new Date(2022, 03, 17).equals(comparedTo));
     }
 
     @ParameterizedTest
