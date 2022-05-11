@@ -75,4 +75,23 @@ class AuthorTest {
     void addDotIfAbbreviationIfStartsWithNumber(String input) {
         assertEquals(input, Author.addDotIfAbbreviation(input));
     }
+
+    @Test
+    void capitalAuthorName(){
+        Author author = new Author("isadora","","","Soares","");
+        assertEquals("Isadora",author.capitalizeFirstName());
+    }
+
+    @Test
+    void capitalAuthorName2(){
+        Author author = new Author("patricia","","","Soares","");
+        assertEquals("Patricia",author.capitalizeFirstName());
+    }
+
+    @Test
+    void capitalAuthorName3(){
+        Author author = new Author("elaine","","","Venson","");
+        assertEquals("Elaine",author.capitalizeFirstName());
+    }
+
 }

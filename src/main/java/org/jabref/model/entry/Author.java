@@ -372,4 +372,12 @@ public class Author {
         }
         return latexFreeAuthor;
     }
+
+     public String capitalizeFirstName()
+    {
+        String firstPart = this.firstPart.substring(0,1).toUpperCase();
+        String upperfirstPart = firstPart.concat(this.firstPart.substring(1));
+
+        return upperfirstPart;
+    }
 }
